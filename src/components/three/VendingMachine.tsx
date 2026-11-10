@@ -119,12 +119,12 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
       </mesh>
 
       {/* feet */}
-      {[
+      {([
         [-1, -1],
         [1, -1],
         [-1, 1],
         [1, 1],
-      ].map(([x, z]) => (
+      ] as const).map(([x, z]) => (
         <mesh key={`${x}${z}`} position={[x * (w / 2 - 0.12), 0.04, z * (d / 2 - 0.12)]}>
           <cylinderGeometry args={[0.06, 0.07, 0.08, 16]} />
           <meshStandardMaterial color="#0a0a0a" />
