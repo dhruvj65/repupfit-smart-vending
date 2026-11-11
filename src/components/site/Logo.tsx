@@ -6,7 +6,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link
       to="/"
-      className={cn("group flex items-center gap-2", className)}
+      className={cn("group flex min-w-0 items-center gap-2", className)}
       aria-label="RepUpFit home"
     >
       <span className="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground transition-transform duration-500 group-hover:rotate-[-12deg]">
@@ -24,8 +24,8 @@ export function Logo({ className }: { className?: string }) {
           <path d="M5 20l7-7 7 7" />
         </svg>
       </span>
-      <span className="font-display text-lg font-extrabold uppercase tracking-tight">
-        RepUp<span className="text-primary">Fit</span>
+      <span className="min-w-0 break-words font-display text-lg font-extrabold uppercase tracking-tight">
+        RepUp<span className="brand-fit text-primary">Fit</span>
       </span>
     </Link>
   );

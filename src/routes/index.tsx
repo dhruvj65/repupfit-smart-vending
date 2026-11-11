@@ -126,7 +126,7 @@ function Hero() {
             <span className="size-2 animate-pulse-glow rounded-full bg-primary" />
             Smart sports-nutrition kiosks
           </p>
-          <h1 className="text-balance text-4xl font-bold uppercase leading-[1.02] md:text-6xl">
+          <h1 className="max-w-full text-balance text-4xl font-bold uppercase leading-[1.02] md:text-6xl">
             <RevealWords text="A whole fitness bar in one machine" />
           </h1>
           <p className="mt-6 max-w-md text-lg text-muted-foreground animate-enter [animation-delay:500ms]">
@@ -147,7 +147,7 @@ function Hero() {
 
         <div aria-hidden className="pointer-events-none select-none">
           <div className="text-wordmark text-[17vw] md:text-[15.5vw] animate-enter [animation-delay:100ms]">
-            RepUp<span className="text-volt-gradient">Fit</span>
+            RepUp<span className="brand-fit-hero text-volt-gradient">Fit</span>
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ export function PageHero({
           <span className="h-px w-8 bg-primary" />
           {eyebrow}
         </motion.p>
-        <h1 className="text-wordmark max-w-5xl text-5xl md:text-8xl">
+        <h1 className="text-wordmark max-w-5xl text-balance text-5xl md:text-8xl">
           <RevealWords text={title} />
         </h1>
         {children && (

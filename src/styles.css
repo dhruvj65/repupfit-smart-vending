@@ -141,6 +141,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
 
   ::selection {
@@ -172,9 +173,22 @@
 @utility text-wordmark {
   font-family: var(--font-display);
   font-weight: 800;
-  line-height: 0.82;
+  line-height: 0.92;
   letter-spacing: -0.045em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 360px) {
+  .brand-fit {
+    display: block;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-fit-hero {
+    display: block;
+  }
 }
 
 @utility text-outline {

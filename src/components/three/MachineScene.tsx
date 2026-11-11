@@ -17,7 +17,7 @@ export default function MachineScene({
 }) {
   return (
     <Canvas
-      shadows
+      shadows="basic"
       dpr={[1, 1.25]}
       camera={{ position: [3.2, 2.6, 7.4], fov: 36 }}
       gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}

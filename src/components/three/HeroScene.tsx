@@ -76,7 +76,7 @@ function Rig({ reducedMotion }: { reducedMotion: boolean }) {
 export default function HeroScene({ reducedMotion = false }: { reducedMotion?: boolean }) {
   return (
     <Canvas
-      shadows
+      shadows="basic"
       dpr={[1, 1.25]}
       camera={{ position: [0, 0.4, 8.5], fov: 38 }}
       gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
