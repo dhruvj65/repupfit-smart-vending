@@ -16,9 +16,21 @@ import {
 const VOLT = "#e6f03c";
 
 /** Physical proportions per model, in scene units (~1 unit = 0.5 m). */
-const DIMENSIONS: Record<MachineVariant, { w: number; h: number; d: number; screen: [number, number] }> = {
-  pro: { w: 1.6, h: 3.9, d: 1.4, screen: [1.25, 1.34] },
-  compact: { w: 1.25, h: 3.6, d: 1.35, screen: [0.98, 1.05] },
+type Shape = {
+  w: number;
+  h: number;
+  d: number;
+  screen: [number, number];
+  /** Screen centre as a fraction of body height. */
+  screenAt: number;
+  body: string;
+};
+
+const DIMENSIONS: Record<MachineVariant, Shape> = {
+  // JK91: 700 × 740 × 1900 mm, black body, 32" portrait screen.
+  jk91: { w: 1.4, h: 3.8, d: 1.48, screen: [0.8, 1.42], screenAt: 0.69, body: "#1c1d1f" },
+  pro: { w: 1.6, h: 3.9, d: 1.4, screen: [1.25, 1.34], screenAt: 0.66, body: "#3a3b37" },
+  compact: { w: 1.25, h: 3.6, d: 1.35, screen: [0.98, 1.05], screenAt: 0.66, body: "#3a3b37" },
 };
 
 type Props = ThreeElements["group"] & {
@@ -28,7 +40,7 @@ type Props = ThreeElements["group"] & {
 
 /** Procedural RepUpFit kiosk: brushed body, glowing touchscreen, dispenser bay with a cup. */
 export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...groupProps }: Props) {
-  const { w, h, d, screen } = DIMENSIONS[variant];
+  const { w, h, d, screen, screenAt, body } = DIMENSIONS[variant];
   const front = d / 2;
   const cupRef = useRef<THREE.Group>(null);
   const glowRef = useRef<THREE.MeshStandardMaterial>(null);
@@ -51,14 +63,14 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
     if (glowRef.current) glowRef.current.emissiveIntensity = 1.6 + Math.sin(t * 2.2) * 0.5;
   });
 
-  const screenY = h * 0.66;
+  const screenY = h * screenAt;
   const bayY = h * 0.3;
 
   return (
     <group {...groupProps}>
       {/* body */}
       <RoundedBox args={[w, h, d]} radius={0.07} smoothness={4} position={[0, h / 2 + 0.08, 0]} castShadow receiveShadow>
-        <meshStandardMaterial map={textures.body} color="#3a3b37" metalness={0.55} roughness={0.42} />
+        <meshStandardMaterial map={textures.body} color={body} metalness={0.55} roughness={0.42} />
       </RoundedBox>
 
       {/* header sign */}
@@ -77,7 +89,7 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
       </mesh>
 
       {/* card reader */}
-      <group position={[w * 0.3, screenY - screen[1] / 2 - 0.22, front + 0.03]}>
+      <group position={[w * 0.34, screenY - screen[1] / 2 - 0.22, front + 0.03]}>
         <RoundedBox args={[0.28, 0.2, 0.06]} radius={0.02}>
           <meshStandardMaterial color="#111110" roughness={0.3} />
         </RoundedBox>
