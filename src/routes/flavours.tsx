@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
@@ -42,12 +42,23 @@ function FlavoursPage() {
   const navigate = Route.useNavigate();
   const active = DRINKS.find((d) => d.id === drink) ?? DRINKS[0]!;
   const [flavourIndex, setFlavourIndex] = useState(0);
+  const [loadingColor, setLoadingColor] = useState<string | null>(null);
   const flavour = active.flavours[Math.min(flavourIndex, active.flavours.length - 1)]!;
 
   const selectDrink = (id: string) => {
+    const nextDrink = DRINKS.find((item) => item.id === id);
+    if (!nextDrink || nextDrink.id === active.id) return;
     setFlavourIndex(0);
+    setLoadingColor(nextDrink.flavours[0]?.color ?? null);
     void navigate({ search: { drink: id }, replace: true, resetScroll: false });
   };
+
+  useEffect(() => {
+    if (loadingColor) {
+      const timer = window.setTimeout(() => setLoadingColor(null), 420);
+      return () => window.clearTimeout(timer);
+    }
+  }, [active.id, loadingColor]);
 
   return (
     <>
@@ -88,6 +99,28 @@ function FlavoursPage() {
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-border bg-surface">
             <div className="pointer-events-none absolute inset-0 bg-spotlight" />
             <FlavourScene color={flavour.color} className="absolute inset-0" />
+            <AnimatePresence>
+              {loadingColor && (
+                <motion.div
+                  className="absolute inset-0 z-10 grid place-items-center bg-background/30 backdrop-blur-[2px]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="flex items-center gap-3 rounded-full border border-border bg-background/85 px-4 py-2 backdrop-blur-xl">
+                    <motion.span
+                      className="size-8 rounded-full border-2 border-foreground/20"
+                      style={{ backgroundColor: loadingColor }}
+                      animate={{ scale: [1, 1.12, 1] }}
+                      transition={{ duration: 0.8, repeat: Infinity }}
+                    />
+                    <span className="text-[0.65rem] font-bold uppercase tracking-widest">
+                      Mixing flavour
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <div className="pointer-events-none absolute bottom-5 left-5 rounded-full border border-border bg-background/70 px-4 py-2 text-xs font-bold uppercase tracking-widest backdrop-blur">
               Drag to rotate
             </div>
@@ -121,7 +154,12 @@ function FlavoursPage() {
                       type="button"
                       role="radio"
                       aria-checked={selected}
-                      onClick={() => setFlavourIndex(i)}
+                      onClick={() => {
+                        if (!selected) {
+                          setLoadingColor(f.color);
+                          setFlavourIndex(i);
+                        }
+                      }}
                       className={cn(
                         "flex items-center gap-3 rounded-full border py-2 pl-2 pr-4 text-sm font-semibold transition-all",
                         selected
