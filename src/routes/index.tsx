@@ -82,7 +82,8 @@ function Hero() {
     <section ref={ref} className="relative min-h-[100svh] overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-spotlight" />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(60%_60%_at_60%_40%,black,transparent)]" />
-      <div className="absolute inset-0">
+      {/* On small screens the scene sits behind the copy, so it is dimmed to keep the text readable. */}
+      <div className="absolute inset-0 opacity-35 md:opacity-100">
         <HeroScene />
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-fade-bottom" />
