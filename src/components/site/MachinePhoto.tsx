@@ -39,7 +39,7 @@ export function MachinePhoto({ variant, className }: MachinePhotoProps) {
         key={`${variant}-${view}`}
         src={photos[view]}
         alt={`${variant} Vendofit machine in a fitness facility`}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-contain p-3 sm:p-5"
         initial={{ opacity: 0, scale: 1.02 }}
         animate={{ opacity: 1, scale: 1, rotateX: tilt.x, rotateY: tilt.y }}
         transition={{ duration: 0.45, ease: "easeOut" }}

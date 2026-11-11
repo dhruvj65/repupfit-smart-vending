@@ -63,7 +63,7 @@ export function HeroScene({ className }: { className?: string | undefined }) {
             src={shakerTouch}
             alt=""
             fetchPriority="high"
-            className="w-[min(74vw,560px)] rounded-[1.5rem] border border-white/10 object-cover shadow-2xl"
+            className="w-[min(74vw,560px)] rounded-[1.5rem] border border-white/10 object-contain shadow-2xl"
           />
           <span className="absolute left-[18%] top-[25%] size-2 animate-pulse-glow rounded-full bg-primary" />
           <span className="absolute right-[20%] top-[32%] size-1.5 animate-pulse-glow rounded-full bg-primary" />
