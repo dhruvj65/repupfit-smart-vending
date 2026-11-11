@@ -14,11 +14,15 @@ export const partnerSchema = z.object({
     .or(z.literal("")),
   venue: z.string().trim().min(2, "Tell us the venue name").max(120),
   venueType: z.enum(VENUE_TYPES, { errorMap: () => ({ message: "Choose a venue type" }) }),
-  visitors: z.coerce
-    .number({ invalid_type_error: "Enter a number" })
-    .int("Use a whole number")
-    .min(0, "Must be 0 or more")
-    .max(100000, "That's a lot — enter 100,000 or less"),
+  // Empty inputs become undefined so they fail as "Enter a number" instead of coercing to 0.
+  visitors: z.preprocess(
+    (v) => (v === "" || v === null ? undefined : v),
+    z.coerce
+      .number({ invalid_type_error: "Enter a number" })
+      .int("Use a whole number")
+      .min(0, "Must be 0 or more")
+      .max(100000, "That's a lot — enter 100,000 or less"),
+  ),
   message: z.string().trim().max(1000, "Keep it under 1000 characters").optional().or(z.literal("")),
 });
 

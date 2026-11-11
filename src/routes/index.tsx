@@ -23,7 +23,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { DRINKS, TOTAL_FLAVOURS } from "@/content/drinks";
 import { FAQ_ALL } from "@/content/faq";
-import { LOCATIONS } from "@/content/locations";
+import { MACHINES } from "@/content/machines";
 import { SITE } from "@/content/site";
 
 export const Route = createFileRoute("/")({
@@ -117,8 +117,8 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.65 }}
           >
             <Button asChild variant="volt" size="xl">
-              <Link to="/locations">
-                Find a machine <ArrowRight />
+              <Link to="/machines">
+                Meet the machines <ArrowRight />
               </Link>
             </Button>
             <Button asChild variant="outline-light" size="xl">
@@ -263,7 +263,7 @@ function DrinksPreview() {
 
 function Stats() {
   const stats = [
-    { value: LOCATIONS.length, suffix: "+", label: "Venues and counting" },
+    { value: MACHINES.length, suffix: "", label: "Kiosk models" },
     { value: TOTAL_FLAVOURS, suffix: "", label: "Flavours on the menu" },
     { value: 40, suffix: "s", label: "From tap to shake" },
     { value: 0, suffix: "", label: "Shakers to wash" },
@@ -302,7 +302,7 @@ function MachineTeaser() {
             <p className="eyebrow mb-4">04 — Our machines</p>
             <h2 className="text-3xl font-bold uppercase leading-tight md:text-5xl">Built for busy gym floors</h2>
             <p className="mt-4 text-muted-foreground">
-              Two kiosk models, one obsession: a perfect shake in under a minute. Spin them around in 3D.
+              Three kiosk models — including the new 32\" JK91 — one obsession: a perfect shake in under a minute. Spin them around in 3D.
             </p>
           </div>
           <Button asChild variant="volt" size="xl">
