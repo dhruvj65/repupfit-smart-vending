@@ -110,13 +110,8 @@ function HomePage() {
 }
 
 function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const wordY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
   return (
-    <section ref={ref} className="relative min-h-[100svh] overflow-hidden">
+    <section className="relative min-h-[100svh] overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-spotlight" />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(60%_60%_at_60%_40%,black,transparent)]" />
       {/* On small screens the scene sits behind the copy, so it is dimmed to keep the text readable. */}
@@ -125,38 +120,20 @@ function Hero() {
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-fade-bottom" />
 
-      <motion.div
-        style={{ opacity: fade }}
-        className="container relative mx-auto flex min-h-[100svh] flex-col justify-between px-5 pb-10 pt-32 md:px-8"
-      >
+      <div className="container relative mx-auto flex min-h-[100svh] flex-col justify-between px-5 pb-10 pt-32 md:px-8 animate-hero-fade">
         <div className="max-w-xl">
-          <motion.p
-            className="eyebrow mb-6 flex items-center gap-3"
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <p className="eyebrow mb-6 flex items-center gap-3 animate-enter [animation-delay:200ms]">
             <span className="size-2 animate-pulse-glow rounded-full bg-primary" />
             Smart sports-nutrition kiosks
-          </motion.p>
+          </p>
           <h1 className="text-balance text-4xl font-bold uppercase leading-[1.02] md:text-6xl">
             <RevealWords text="A whole fitness bar in one machine" />
           </h1>
-          <motion.p
-            className="mt-6 max-w-md text-lg text-muted-foreground"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-          >
+          <p className="mt-6 max-w-md text-lg text-muted-foreground animate-enter [animation-delay:500ms]">
             Protein, collagen, BCAA and isotonic drinks — freshly mixed in seconds at your gym or
             mall. Leave the shaker at home.
-          </motion.p>
-          <motion.div
-            className="pointer-events-auto mt-9 flex flex-wrap gap-3"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-          >
+          </p>
+          <div className="pointer-events-auto mt-9 flex flex-wrap gap-3 animate-enter [animation-delay:650ms]">
             <Button asChild variant="volt" size="xl">
               <Link to="/machines">
                 Meet the machines <ArrowRight />
@@ -165,20 +142,15 @@ function Hero() {
             <Button asChild variant="outline-light" size="xl">
               <Link to="/flavours">See flavours</Link>
             </Button>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div style={{ y: wordY }} aria-hidden className="pointer-events-none select-none">
-          <motion.div
-            className="text-wordmark text-[17vw] md:text-[15.5vw]"
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
+        <div aria-hidden className="pointer-events-none select-none">
+          <div className="text-wordmark text-[17vw] md:text-[15.5vw] animate-enter [animation-delay:100ms]">
             RepUp<span className="text-volt-gradient">Fit</span>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
