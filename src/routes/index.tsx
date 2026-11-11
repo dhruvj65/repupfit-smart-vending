@@ -191,20 +191,18 @@ function Statement() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const textX = useTransform(scrollYProgress, [0, 1], ["10%", "-30%"]);
 
   return (
     <section
       ref={ref}
       className="relative overflow-hidden border-y border-border bg-surface py-24 md:py-32"
     >
-      <motion.p
-        style={{ x: textX }}
+      <p
         aria-hidden
-        className="pointer-events-none whitespace-nowrap text-wordmark text-outline text-[14vw]"
+        className="pointer-events-none text-center text-wordmark text-outline text-[10vw]"
       >
         Train · Refuel · Repeat · Train · Refuel
-      </motion.p>
+      </p>
       <div className="container mx-auto mt-10 grid items-center gap-12 px-5 md:grid-cols-2 md:px-8">
         <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-card">
           <motion.img

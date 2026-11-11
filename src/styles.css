@@ -155,6 +155,7 @@
   h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
   }
 
   @media (prefers-reduced-motion: reduce) {

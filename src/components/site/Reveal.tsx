@@ -36,7 +36,7 @@ export function RevealWords({ text, className }: { text: string; className?: str
       {words.map((word, i) => (
         <span
           key={`${word}-${i}`}
-          className="inline-block overflow-hidden pb-[0.08em] align-bottom"
+          className="inline-block overflow-visible pb-[0.08em] align-bottom"
           aria-hidden
         >
           <motion.span
