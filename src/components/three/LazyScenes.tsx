@@ -39,8 +39,37 @@ function SceneShell({
   );
 }
 
+function detectStaticMobileMode() {
+  if (typeof window === "undefined") return false;
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  const narrowScreen = window.matchMedia("(max-width: 768px)").matches;
+  const saveData =
+    "connection" in navigator &&
+    Boolean(
+      (
+        navigator as Navigator & {
+          connection?: { saveData?: boolean };
+        }
+      ).connection?.saveData,
+    );
+  const lowPower =
+    typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+  return coarsePointer || narrowScreen || saveData || lowPower;
+}
+
+function useStaticMobileMode() {
+  const [staticMode, setStaticMode] = useState(detectStaticMobileMode);
+
+  useEffect(() => {
+    setStaticMode(detectStaticMobileMode());
+  }, []);
+
+  return staticMode;
+}
+
 export function HeroScene({ className }: { className?: string | undefined }) {
   const reduced = useReducedMotion() ?? false;
+  const staticMode = useStaticMobileMode();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -55,7 +84,7 @@ export function HeroScene({ className }: { className?: string | undefined }) {
 
   return (
     <SceneShell className={className}>
-      {ready ? (
+      {ready && !staticMode ? (
         <HeroSceneImpl reducedMotion={reduced} />
       ) : (
         <div className="relative flex h-full w-full items-center justify-center">
@@ -81,9 +110,25 @@ export function FlavourScene({
   className?: string | undefined;
 }) {
   const reduced = useReducedMotion() ?? false;
+  const staticMode = useStaticMobileMode();
   return (
     <SceneShell className={className}>
-      <FlavourSceneImpl {...props} reducedMotion={reduced} />
+      {staticMode ? (
+        <div
+          className="flex h-full w-full items-center justify-center"
+          style={{
+            background: `radial-gradient(circle, ${props.color}55 0%, transparent 62%)`,
+          }}
+          aria-label="Flavour product preview"
+        >
+          <div
+            className="size-32 rounded-[2rem] border-4 border-white/60 shadow-2xl sm:size-44"
+            style={{ backgroundColor: props.color }}
+          />
+        </div>
+      ) : (
+        <FlavourSceneImpl {...props} reducedMotion={reduced} />
+      )}
     </SceneShell>
   );
 }
@@ -95,9 +140,10 @@ export function MachineScene({
   className?: string | undefined;
 }) {
   const reduced = useReducedMotion() ?? false;
+  const staticMode = useStaticMobileMode();
   return (
     <SceneShell className={className}>
-      <MachineSceneImpl {...props} reducedMotion={reduced} />
+      {!staticMode && <MachineSceneImpl {...props} reducedMotion={reduced} />}
     </SceneShell>
   );
 }

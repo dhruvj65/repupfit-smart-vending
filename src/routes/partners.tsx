@@ -117,6 +117,7 @@ function PartnersPage() {
                 width={1600}
                 height={1008}
                 loading="lazy"
+                decoding="async"
                 className="h-64 w-full object-cover md:h-80"
               />
             </Reveal>

@@ -210,7 +210,8 @@ function Statement() {
             alt="Athlete holding a RepUpFit shake after training"
             width={1280}
             height={1600}
-            loading="lazy"
+            loading="eager"
+            decoding="async"
             style={{ y: imgY, scale: 1.2 }}
             className="h-full w-full object-cover"
           />
@@ -328,7 +329,8 @@ function MachineTeaser() {
           alt="RepUpFit kiosk installed in a modern gym"
           width={1600}
           height={1008}
-          loading="lazy"
+          loading="eager"
+          decoding="async"
           className="h-[520px] w-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 md:h-[640px]"
         />
         <div className="absolute inset-0 bg-fade-bottom" />
