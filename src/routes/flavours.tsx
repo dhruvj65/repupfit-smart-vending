@@ -52,8 +52,8 @@ function FlavoursPage() {
   return (
     <>
       <PageHero eyebrow={`${TOTAL_FLAVOURS} flavours`} title="Pick your flavour">
-        Five drink types, one perfect mix. Choose a drink, pick a flavour and spin the shake — it's exactly what
-        comes out of the machine.
+        Five drink types, one perfect mix. Choose a drink, pick a flavour and spin the shake — it's
+        exactly what comes out of the machine.
       </PageHero>
 
       <section className="container mx-auto px-5 py-16 md:px-8 md:py-24">
@@ -102,11 +102,17 @@ function FlavoursPage() {
               transition={{ duration: 0.4 }}
             >
               <p className="eyebrow">{active.protein}</p>
-              <h2 className="mt-3 text-4xl font-bold uppercase leading-none md:text-6xl">{active.name}</h2>
+              <h2 className="mt-3 text-4xl font-bold uppercase leading-none md:text-6xl">
+                {active.name}
+              </h2>
               <p className="mt-5 text-lg text-muted-foreground">{active.description}</p>
 
               <p className="eyebrow mt-10">Flavours</p>
-              <div className="mt-4 flex flex-wrap gap-2" role="radiogroup" aria-label={`${active.name} flavours`}>
+              <div
+                className="mt-4 flex flex-wrap gap-2"
+                role="radiogroup"
+                aria-label={`${active.name} flavours`}
+              >
                 {active.flavours.map((f, i) => {
                   const selected = f.name === flavour.name;
                   return (
@@ -118,10 +124,15 @@ function FlavoursPage() {
                       onClick={() => setFlavourIndex(i)}
                       className={cn(
                         "flex items-center gap-3 rounded-full border py-2 pl-2 pr-4 text-sm font-semibold transition-all",
-                        selected ? "border-primary bg-secondary" : "border-border hover:border-foreground/40",
+                        selected
+                          ? "border-primary bg-secondary"
+                          : "border-border hover:border-foreground/40",
                       )}
                     >
-                      <span className="size-7 rounded-full border border-foreground/20" style={{ backgroundColor: f.color }} />
+                      <span
+                        className="size-7 rounded-full border border-foreground/20"
+                        style={{ backgroundColor: f.color }}
+                      />
                       {f.name}
                     </button>
                   );
@@ -130,7 +141,10 @@ function FlavoursPage() {
 
               <ul className="mt-10 grid gap-3 sm:grid-cols-2">
                 {active.benefits.map((b) => (
-                  <li key={b} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 text-sm">
+                  <li
+                    key={b}
+                    className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 text-sm"
+                  >
                     <Check className="mt-0.5 size-4 shrink-0 text-primary" />
                     {b}
                   </li>
@@ -149,7 +163,9 @@ function FlavoursPage() {
               <Reveal key={d.id} delay={i * 0.05} className="bg-background p-8">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-xl font-bold uppercase">{d.name}</h3>
-                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{d.protein}</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    {d.protein}
+                  </span>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">{d.short}</p>
                 <ul className="mt-6 space-y-2">
@@ -177,7 +193,9 @@ function FlavoursPage() {
           <Reveal className="mt-14 flex flex-col items-start justify-between gap-6 rounded-3xl border border-border bg-card p-8 md:flex-row md:items-center md:p-10">
             <div>
               <h3 className="text-2xl font-bold uppercase">Mixed fresh in every machine</h3>
-              <p className="mt-2 text-muted-foreground">Filtered, chilled water and certified brands — ready in about 40 seconds.</p>
+              <p className="mt-2 text-muted-foreground">
+                Filtered, chilled water and certified brands — ready in about 40 seconds.
+              </p>
             </div>
             <Button asChild variant="volt" size="xl">
               <Link to="/machines">

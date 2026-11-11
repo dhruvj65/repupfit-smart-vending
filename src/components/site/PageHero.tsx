@@ -4,7 +4,15 @@ import type { ReactNode } from "react";
 import { RevealWords } from "./Reveal";
 
 /** Header block for inner pages: giant title over a grid backdrop. */
-export function PageHero({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
+export function PageHero({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: ReactNode;
+}) {
   return (
     <section className="relative overflow-hidden border-b border-border pb-16 pt-36 md:pb-24 md:pt-44">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(70%_60%_at_50%_30%,black,transparent)]" />

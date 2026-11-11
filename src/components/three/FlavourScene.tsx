@@ -18,7 +18,13 @@ function SpinningCup({ color, reducedMotion }: { color: string; reducedMotion: b
   );
 }
 
-export default function FlavourScene({ color, reducedMotion = false }: { color: string; reducedMotion?: boolean }) {
+export default function FlavourScene({
+  color,
+  reducedMotion = false,
+}: {
+  color: string;
+  reducedMotion?: boolean;
+}) {
   return (
     <Canvas
       shadows
@@ -28,7 +34,12 @@ export default function FlavourScene({ color, reducedMotion = false }: { color: 
       aria-label="3D shake cup preview. Drag to rotate."
     >
       <Suspense fallback={null}>
-        <PresentationControls global={false} snap polar={[-0.2, 0.3]} azimuth={[-Infinity, Infinity]}>
+        <PresentationControls
+          global={false}
+          snap
+          polar={[-0.2, 0.3]}
+          azimuth={[-Infinity, Infinity]}
+        >
           <Float speed={reducedMotion ? 0 : 1.4} floatIntensity={0.5} rotationIntensity={0.2}>
             <SpinningCup color={color} reducedMotion={reducedMotion} />
           </Float>

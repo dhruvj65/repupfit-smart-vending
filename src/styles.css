@@ -106,7 +106,8 @@
     color-mix(in oklab, var(--primary) 16%, transparent) 0%,
     transparent 70%
   );
-  --shadow-glow: 0 0 0 1px color-mix(in oklab, var(--primary) 40%, transparent),
+  --shadow-glow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 40%, transparent),
     0 18px 50px -12px color-mix(in oklab, var(--primary) 45%, transparent);
   --shadow-card: 0 30px 60px -30px oklch(0 0 0 / 70%);
 

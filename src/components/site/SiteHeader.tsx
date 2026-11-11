@@ -28,7 +28,9 @@ export function SiteHeader() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled || open ? "border-b border-border bg-background/80 backdrop-blur-xl" : "bg-transparent",
+        scrolled || open
+          ? "border-b border-border bg-background/80 backdrop-blur-xl"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-5 md:px-8">
@@ -87,25 +89,27 @@ export function SiteHeader() {
             transition={{ duration: 0.3 }}
           >
             <ul className="flex flex-col pt-6">
-              {[{ to: "/", label: "Home" } as const, ...NAV_LINKS, { to: "/partners", label: "Partners" } as const].map(
-                (link, i) => (
-                  <motion.li
-                    key={link.to}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * i }}
+              {[
+                { to: "/", label: "Home" } as const,
+                ...NAV_LINKS,
+                { to: "/partners", label: "Partners" } as const,
+              ].map((link, i) => (
+                <motion.li
+                  key={link.to}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i }}
+                >
+                  <Link
+                    to={link.to}
+                    className="block border-b border-border py-5 font-display text-3xl font-bold uppercase"
+                    activeProps={{ className: "text-primary" }}
+                    activeOptions={{ exact: true }}
                   >
-                    <Link
-                      to={link.to}
-                      className="block border-b border-border py-5 font-display text-3xl font-bold uppercase"
-                      activeProps={{ className: "text-primary" }}
-                      activeOptions={{ exact: true }}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.li>
-                ),
-              )}
+                    {link.label}
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
           </motion.nav>
         )}

@@ -25,7 +25,7 @@ export const MACHINES: Machine[] = [
     model: "JK91",
     tag: "New flagship",
     summary:
-      "Our biggest kiosk yet: a 32\" HD touchscreen, nine powder canisters and automatic cleaning after every cup. Its standout feature is Bring-Your-Own-Cup mode.",
+      'Our biggest kiosk yet: a 32" HD touchscreen, nine powder canisters and automatic cleaning after every cup. Its standout feature is Bring-Your-Own-Cup mode.',
     highlights: ['32" HD touchscreen', "9 powder canisters", "Bring-Your-Own-Cup mode"],
     specs: [
       { label: "Model", value: "JK91" },
@@ -45,7 +45,7 @@ export const MACHINES: Machine[] = [
     ],
     features: [
       {
-        title: "32\" large HD screen",
+        title: '32" large HD screen',
         text: "A big touchscreen that's effortless to use and doubles as a video screen for brand and promo content.",
       },
       {
@@ -100,7 +100,7 @@ export const MACHINES: Machine[] = [
     model: "Pro 8",
     tag: "Club favourite",
     summary:
-      "Built for busy clubs. Eight powder containers, a 21.5\" touchscreen and the fastest mix cycle we make.",
+      'Built for busy clubs. Eight powder containers, a 21.5" touchscreen and the fastest mix cycle we make.',
     highlights: ["8 drink containers", '21.5" touchscreen', "~40 s mix cycle"],
     specs: [
       { label: "Height", value: "1940 mm" },
@@ -114,7 +114,10 @@ export const MACHINES: Machine[] = [
     ],
     features: [
       { title: "Fast mix cycle", text: "Around 40 seconds from tap to shake, even at peak hours." },
-      { title: "8 containers", text: "Room for the full menu of protein, collagen, BCAA and isotonic drinks." },
+      {
+        title: "8 containers",
+        text: "Room for the full menu of protein, collagen, BCAA and isotonic drinks.",
+      },
       { title: "Contactless payments", text: "Bank cards, Apple Pay, Google Pay and QR codes." },
       { title: "Sealed cups & lids", text: "Every drink comes in a fresh cup — no shaker needed." },
     ],
@@ -138,7 +141,10 @@ export const MACHINES: Machine[] = [
       { label: "Standby consumption", value: "160 W" },
     ],
     features: [
-      { title: "Slim footprint", text: "Just 600 mm wide — fits beside a reception desk or in a corridor." },
+      {
+        title: "Slim footprint",
+        text: "Just 600 mm wide — fits beside a reception desk or in a corridor.",
+      },
       { title: "7 containers", text: "Covers the most popular drinks on our menu." },
       { title: "Smooth-mix tech", text: "The same vortex mixer as our larger models." },
       { title: "Low standby draw", text: "Efficient components keep running costs down." },

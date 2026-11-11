@@ -3,10 +3,16 @@ import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 import { PageHero } from "@/components/site/PageHero";
+import { MachinePhoto } from "@/components/site/MachinePhoto";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { MachineScene } from "@/components/three/LazyScenes";
-import { AFTER_SALES, MACHINES, getMachine, isMachineVariant, type MachineVariant } from "@/content/machines";
+import {
+  AFTER_SALES,
+  MACHINES,
+  getMachine,
+  isMachineVariant,
+  type MachineVariant,
+} from "@/content/machines";
 import { cn } from "@/lib/utils";
 
 type MachinesSearch = { model?: MachineVariant };
@@ -20,12 +26,13 @@ export const Route = createFileRoute("/machines")({
       {
         name: "description",
         content:
-          "Compare RepUpFit's smart protein shake kiosks: the 32\" JK91 with 9 canisters and auto-cleaning, the Pro 8 and the slim Compact 7. Full specs and 3D views.",
+          "Compare RepUpFit's smart protein shake kiosks: the 32\" JK91 with 9 canisters and auto-cleaning, the Pro 8 and the slim Compact 7. Full specs and real Vendofit machine photos.",
       },
       { property: "og:title", content: "RepUpFit machines — smart protein shake kiosks" },
       {
         property: "og:description",
-        content: "Three kiosk models, full specs and an interactive 3D view of each one.",
+        content:
+          "Three kiosk models, full specs and real Vendofit machine photos with front and side views.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,8 +49,8 @@ function MachinesPage() {
   return (
     <>
       <PageHero eyebrow={`${MACHINES.length} kiosk models`} title="Meet the machines">
-        Every RepUpFit kiosk mixes a fresh shake in under a minute. Pick a model to spin it around in 3D and see the
-        full specs.
+        Every RepUpFit kiosk mixes a fresh shake in under a minute. Pick a model, switch between
+        real Vendofit views, and see the full specs.
       </PageHero>
 
       <section className="container mx-auto px-5 py-16 md:px-8 md:py-24">
@@ -56,15 +63,27 @@ function MachinesPage() {
                 type="button"
                 role="tab"
                 aria-selected={selected}
-                onClick={() => void navigate({ search: { model: m.id }, replace: true, resetScroll: false })}
+                onClick={() =>
+                  void navigate({ search: { model: m.id }, replace: true, resetScroll: false })
+                }
                 className={cn(
                   "group relative overflow-hidden rounded-2xl border p-5 text-left transition-colors",
-                  selected ? "border-primary bg-secondary" : "border-border bg-card hover:border-foreground/40",
+                  selected
+                    ? "border-primary bg-secondary"
+                    : "border-border bg-card hover:border-foreground/40",
                 )}
               >
-                <span className={cn("eyebrow", selected ? "text-primary" : "text-muted-foreground")}>{m.tag}</span>
-                <span className="mt-2 block font-display text-xl font-bold uppercase">{m.name}</span>
-                <span className="mt-1 block text-sm text-muted-foreground">{m.highlights.join(" · ")}</span>
+                <span
+                  className={cn("eyebrow", selected ? "text-primary" : "text-muted-foreground")}
+                >
+                  {m.tag}
+                </span>
+                <span className="mt-2 block font-display text-xl font-bold uppercase">
+                  {m.name}
+                </span>
+                <span className="mt-1 block text-sm text-muted-foreground">
+                  {m.highlights.join(" · ")}
+                </span>
               </button>
             );
           })}
@@ -73,10 +92,7 @@ function MachinesPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div className="relative min-h-[460px] overflow-hidden rounded-[2rem] border border-border bg-surface md:min-h-[620px]">
             <div className="pointer-events-none absolute inset-0 bg-spotlight" />
-            <MachineScene variant={machine.id} className="absolute inset-0" />
-            <div className="pointer-events-none absolute bottom-5 left-5 rounded-full border border-border bg-background/70 px-4 py-2 text-xs font-bold uppercase tracking-widest backdrop-blur">
-              Drag to rotate
-            </div>
+            <MachinePhoto variant={machine.id} />
           </div>
 
           <AnimatePresence mode="wait">
@@ -88,12 +104,17 @@ function MachinesPage() {
               transition={{ duration: 0.4 }}
             >
               <p className="eyebrow">Model {machine.model}</p>
-              <h2 className="mt-3 text-4xl font-bold uppercase leading-none md:text-6xl">{machine.name}</h2>
+              <h2 className="mt-3 text-4xl font-bold uppercase leading-none md:text-6xl">
+                {machine.name}
+              </h2>
               <p className="mt-5 text-lg text-muted-foreground">{machine.summary}</p>
 
               <dl className="mt-8 divide-y divide-border border-y border-border">
                 {machine.specs.map((s) => (
-                  <div key={s.label} className="flex items-baseline justify-between gap-6 py-3 text-sm">
+                  <div
+                    key={s.label}
+                    className="flex items-baseline justify-between gap-6 py-3 text-sm"
+                  >
                     <dt className="text-muted-foreground">{s.label}</dt>
                     <dd className="text-right font-semibold">{s.value}</dd>
                   </div>
@@ -121,7 +142,9 @@ function MachinesPage() {
           >
             {machine.features.map((f, i) => (
               <Reveal key={f.title} delay={(i % 4) * 0.05} className="bg-background p-7">
-                <span className="font-display text-sm text-primary">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-display text-sm text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <h3 className="mt-4 text-lg font-bold uppercase leading-tight">{f.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{f.text}</p>
               </Reveal>
@@ -140,7 +163,11 @@ function MachinesPage() {
                   Model
                 </th>
                 {MACHINES.map((m) => (
-                  <th key={m.id} scope="col" className="p-5 font-display text-base font-bold uppercase">
+                  <th
+                    key={m.id}
+                    scope="col"
+                    className="p-5 font-display text-base font-bold uppercase"
+                  >
                     {m.name}
                   </th>
                 ))}
@@ -168,12 +195,17 @@ function MachinesPage() {
             <p className="eyebrow mb-4 flex items-center gap-3">
               <ShieldCheck className="size-4 text-primary" /> After-sales service
             </p>
-            <h3 className="text-3xl font-bold uppercase leading-tight md:text-4xl">We look after every machine</h3>
+            <h3 className="text-3xl font-bold uppercase leading-tight md:text-4xl">
+              We look after every machine
+            </h3>
           </Reveal>
           <Reveal delay={0.1}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {AFTER_SALES.map((item) => (
-                <li key={item} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 font-semibold">
+                <li
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 font-semibold"
+                >
                   <Check className="size-4 shrink-0 text-primary" />
                   {item}
                 </li>
@@ -184,8 +216,12 @@ function MachinesPage() {
 
         <Reveal className="mt-16 flex flex-col items-start justify-between gap-6 rounded-[2rem] bg-volt-gradient p-10 text-primary-foreground md:flex-row md:items-center md:p-14">
           <div>
-            <h3 className="text-3xl font-extrabold uppercase leading-tight md:text-4xl">Want one in your venue?</h3>
-            <p className="mt-2 font-medium opacity-80">Tell us about your space and we'll recommend the right model.</p>
+            <h3 className="text-3xl font-extrabold uppercase leading-tight md:text-4xl">
+              Want one in your venue?
+            </h3>
+            <p className="mt-2 font-medium opacity-80">
+              Tell us about your space and we'll recommend the right model.
+            </p>
           </div>
           <Link
             to="/partners"
@@ -208,4 +244,3 @@ const COMPARE_ROWS: { label: string; values: Record<MachineVariant, string> }[] 
   { label: "Bring your own cup", values: { jk91: "Yes", pro: "—", compact: "—" } },
   { label: "Networking", values: { jk91: "4G + Wi-Fi", pro: "—", compact: "—" } },
 ];
-

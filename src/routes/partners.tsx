@@ -43,9 +43,21 @@ export const Route = createFileRoute("/partners")({
 });
 
 const BENEFITS = [
-  { icon: Truck, title: "Free installation", text: "We deliver, set up and connect the kiosk — you just need a power socket and a little floor space." },
-  { icon: Wrench, title: "We run it", text: "Restocking, cleaning, servicing and remote monitoring are all on us." },
-  { icon: Coins, title: "You earn", text: "A share of every drink sold, paid monthly, with zero upfront cost." },
+  {
+    icon: Truck,
+    title: "Free installation",
+    text: "We deliver, set up and connect the kiosk — you just need a power socket and a little floor space.",
+  },
+  {
+    icon: Wrench,
+    title: "We run it",
+    text: "Restocking, cleaning, servicing and remote monitoring are all on us.",
+  },
+  {
+    icon: Coins,
+    title: "You earn",
+    text: "A share of every drink sold, paid monthly, with zero upfront cost.",
+  },
 ];
 
 const STEPS = [
@@ -59,14 +71,18 @@ function PartnersPage() {
   return (
     <>
       <PageHero eyebrow="For gyms & venues" title="Put a RepUpFit in your club">
-        Give members a fresh shake the second they finish training. We handle everything — you earn a share of
-        every drink.
+        Give members a fresh shake the second they finish training. We handle everything — you earn
+        a share of every drink.
       </PageHero>
 
       <section className="container mx-auto px-5 py-20 md:px-8 md:py-28">
         <div className="grid gap-4 md:grid-cols-3">
           {BENEFITS.map((b, i) => (
-            <Reveal key={b.title} delay={i * 0.07} className="rounded-3xl border border-border bg-card p-8">
+            <Reveal
+              key={b.title}
+              delay={i * 0.07}
+              className="rounded-3xl border border-border bg-card p-8"
+            >
               <b.icon className="size-9 text-primary" strokeWidth={1.6} />
               <h2 className="mt-6 text-xl font-bold uppercase">{b.title}</h2>
               <p className="mt-3 text-muted-foreground">{b.text}</p>
@@ -118,7 +134,9 @@ function PartnersPage() {
         <Reveal className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-border bg-card p-8 md:flex-row md:items-center md:p-10">
           <div>
             <h2 className="text-2xl font-bold uppercase">Not sure which machine fits?</h2>
-            <p className="mt-2 text-muted-foreground">Compare our three kiosk models and their specs.</p>
+            <p className="mt-2 text-muted-foreground">
+              Compare our three kiosk models and their specs.
+            </p>
           </div>
           <Button asChild variant="outline-light" size="xl">
             <Link to="/machines">
@@ -159,16 +177,27 @@ function PartnerForm() {
         role="status"
       >
         <CheckCircle2 className="size-10 text-primary" />
-        <h3 className="mt-5 text-2xl font-bold uppercase">Almost there, {sent.name.split(" ")[0]}</h3>
+        <h3 className="mt-5 text-2xl font-bold uppercase">
+          Almost there, {sent.name.split(" ")[0]}
+        </h3>
         <p className="mt-3 text-muted-foreground">
-          Your email app should have opened with your enquiry for {sent.venue}. Hit send and we'll reply within two
-          working days. If nothing opened, email us at{" "}
-          <a href={`mailto:${SITE.email}`} className="font-semibold text-primary underline-offset-4 hover:underline">
+          Your email app should have opened with your enquiry for {sent.venue}. Hit send and we'll
+          reply within two working days. If nothing opened, email us at{" "}
+          <a
+            href={`mailto:${SITE.email}`}
+            className="font-semibold text-primary underline-offset-4 hover:underline"
+          >
             {SITE.email}
           </a>
           .
         </p>
-        <Button type="button" variant="outline-light" size="lg" className="mt-6" onClick={() => setSent(null)}>
+        <Button
+          type="button"
+          variant="outline-light"
+          size="lg"
+          className="mt-6"
+          onClick={() => setSent(null)}
+        >
           Send another enquiry
         </Button>
       </motion.div>
@@ -176,21 +205,53 @@ function PartnerForm() {
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)} className="mt-10 grid gap-5 sm:grid-cols-2" aria-label="Partner enquiry">
+    <form
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}
+      className="mt-10 grid gap-5 sm:grid-cols-2"
+      aria-label="Partner enquiry"
+    >
       <Field label="Your name" htmlFor="name" error={errors.name?.message}>
-        <input id="name" autoComplete="name" className={inputCls(!!errors.name)} {...register("name")} />
+        <input
+          id="name"
+          autoComplete="name"
+          className={inputCls(!!errors.name)}
+          {...register("name")}
+        />
       </Field>
       <Field label="Email" htmlFor="email" error={errors.email?.message}>
-        <input id="email" type="email" autoComplete="email" className={inputCls(!!errors.email)} {...register("email")} />
+        <input
+          id="email"
+          type="email"
+          autoComplete="email"
+          className={inputCls(!!errors.email)}
+          {...register("email")}
+        />
       </Field>
       <Field label="Phone (optional)" htmlFor="phone" error={errors.phone?.message}>
-        <input id="phone" type="tel" autoComplete="tel" className={inputCls(!!errors.phone)} {...register("phone")} />
+        <input
+          id="phone"
+          type="tel"
+          autoComplete="tel"
+          className={inputCls(!!errors.phone)}
+          {...register("phone")}
+        />
       </Field>
       <Field label="Venue name" htmlFor="venue" error={errors.venue?.message}>
-        <input id="venue" autoComplete="organization" className={inputCls(!!errors.venue)} {...register("venue")} />
+        <input
+          id="venue"
+          autoComplete="organization"
+          className={inputCls(!!errors.venue)}
+          {...register("venue")}
+        />
       </Field>
       <Field label="Venue type" htmlFor="venueType" error={errors.venueType?.message}>
-        <select id="venueType" defaultValue="" className={inputCls(!!errors.venueType)} {...register("venueType")}>
+        <select
+          id="venueType"
+          defaultValue=""
+          className={inputCls(!!errors.venueType)}
+          {...register("venueType")}
+        >
           <option value="" disabled>
             Choose one
           </option>
@@ -202,16 +263,41 @@ function PartnerForm() {
         </select>
       </Field>
       <Field label="Daily visitors" htmlFor="visitors" error={errors.visitors?.message}>
-        <input id="visitors" type="number" inputMode="numeric" min={0} className={inputCls(!!errors.visitors)} {...register("visitors")} />
+        <input
+          id="visitors"
+          type="number"
+          inputMode="numeric"
+          min={0}
+          className={inputCls(!!errors.visitors)}
+          {...register("visitors")}
+        />
       </Field>
-      <Field label="Anything else? (optional)" htmlFor="message" error={errors.message?.message} className="sm:col-span-2">
-        <textarea id="message" rows={4} className={cn(inputCls(!!errors.message), "h-auto py-3")} {...register("message")} />
+      <Field
+        label="Anything else? (optional)"
+        htmlFor="message"
+        error={errors.message?.message}
+        className="sm:col-span-2"
+      >
+        <textarea
+          id="message"
+          rows={4}
+          className={cn(inputCls(!!errors.message), "h-auto py-3")}
+          {...register("message")}
+        />
       </Field>
       <div className="sm:col-span-2">
-        <Button type="submit" variant="volt" size="xl" disabled={isSubmitting} className="w-full sm:w-auto">
+        <Button
+          type="submit"
+          variant="volt"
+          size="xl"
+          disabled={isSubmitting}
+          className="w-full sm:w-auto"
+        >
           Send enquiry <ArrowRight />
         </Button>
-        <p className="mt-3 text-xs text-muted-foreground">Sending opens your email app with your details filled in.</p>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Sending opens your email app with your details filled in.
+        </p>
       </div>
     </form>
   );

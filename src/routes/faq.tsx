@@ -3,7 +3,12 @@ import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
 
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { FAQ_ALL, FAQ_GROUPS } from "@/content/faq";
 import { SITE } from "@/content/site";
 
@@ -48,8 +53,8 @@ function FaqPage() {
   return (
     <>
       <PageHero eyebrow="FAQ" title="Good to know">
-        Quick answers about buying a drink, what's inside and hosting a kiosk. Still stuck? Our team is one message
-        away.
+        Quick answers about buying a drink, what's inside and hosting a kiosk. Still stuck? Our team
+        is one message away.
       </PageHero>
 
       <section className="container mx-auto grid gap-12 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[240px_1fr]">
@@ -79,7 +84,9 @@ function FaqPage() {
                       <AccordionTrigger className="py-6 text-left font-display text-lg font-bold hover:no-underline">
                         {item.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-base text-muted-foreground">{item.a}</AccordionContent>
+                      <AccordionContent className="text-base text-muted-foreground">
+                        {item.a}
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -94,9 +101,27 @@ function FaqPage() {
           <h2 className="text-3xl font-bold uppercase md:text-4xl">Still have a question?</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
-              { icon: MessageCircle, label: "WhatsApp", value: "Message support", href: SITE.whatsapp, external: true },
-              { icon: Phone, label: "Call us", value: SITE.phone, href: SITE.phoneHref, external: false },
-              { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, external: false },
+              {
+                icon: MessageCircle,
+                label: "WhatsApp",
+                value: "Message support",
+                href: SITE.whatsapp,
+                external: true,
+              },
+              {
+                icon: Phone,
+                label: "Call us",
+                value: SITE.phone,
+                href: SITE.phoneHref,
+                external: false,
+              },
+              {
+                icon: Mail,
+                label: "Email",
+                value: SITE.email,
+                href: `mailto:${SITE.email}`,
+                external: false,
+              },
             ].map((c, i) => (
               <Reveal key={c.label} delay={i * 0.06}>
                 <a
@@ -118,7 +143,10 @@ function FaqPage() {
           </div>
           <p className="mt-10 text-muted-foreground">
             Run a gym or venue?{" "}
-            <Link to="/partners" className="font-semibold text-primary underline-offset-4 hover:underline">
+            <Link
+              to="/partners"
+              className="font-semibold text-primary underline-offset-4 hover:underline"
+            >
               Find out about hosting a kiosk
             </Link>
             .

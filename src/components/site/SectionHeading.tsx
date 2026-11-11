@@ -20,7 +20,10 @@ export function SectionHeading({
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       <Reveal>
-        <p className="eyebrow mb-5 flex items-center gap-3 data-[align=center]:justify-center" data-align={align}>
+        <p
+          className="eyebrow mb-5 flex items-center gap-3 data-[align=center]:justify-center"
+          data-align={align}
+        >
           {index && <span className="text-primary">{index}</span>}
           <span className="h-px w-8 bg-primary" />
           {label}

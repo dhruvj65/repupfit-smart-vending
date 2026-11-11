@@ -1,4 +1,5 @@
 <!-- LOVABLE:BEGIN -->
+
 > [!IMPORTANT]
 > This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
 > published git history — force pushing, or rebasing/amending/squashing commits
@@ -27,9 +28,11 @@ use the editor.
   `LOVABLE_API_KEY`. When Lovable does not provide one, users can bring their
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
+
 <!-- LOVABLE:END -->
 
 ## Project rules
+
 - Site copy, drinks, machines and FAQ live as typed data in `src/content/*`; pages only render it, so content edits never touch layout code.
 - Three.js scenes load only through `src/components/three/LazyScenes.tsx` (lazy + ClientOnly) so `three` never enters the SSR bundle.
 - Headline word animations trigger on the outer wrapper, never on clipped inner words — clipped elements never intersect, so text stays hidden.

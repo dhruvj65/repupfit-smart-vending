@@ -23,7 +23,12 @@ export const partnerSchema = z.object({
       .min(0, "Must be 0 or more")
       .max(100000, "That's a lot — enter 100,000 or less"),
   ),
-  message: z.string().trim().max(1000, "Keep it under 1000 characters").optional().or(z.literal("")),
+  message: z
+    .string()
+    .trim()
+    .max(1000, "Keep it under 1000 characters")
+    .optional()
+    .or(z.literal("")),
 });
 
 export type PartnerInput = z.input<typeof partnerSchema>;

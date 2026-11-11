@@ -19,7 +19,12 @@ import { Marquee } from "@/components/site/Marquee";
 import { Reveal, RevealWords } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { HeroScene } from "@/components/three/LazyScenes";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { DRINKS, TOTAL_FLAVOURS } from "@/content/drinks";
 import { FAQ_ALL } from "@/content/faq";
@@ -48,19 +53,51 @@ export const Route = createFileRoute("/")({
 });
 
 const FEATURES = [
-  { icon: Blend, title: "Smooth-mix tech", text: "A high-speed vortex mixer blends every shake completely — zero clumps, every time." },
-  { icon: Clock3, title: "Open when you are", text: "Available for as long as your gym or mall is open, early mornings included." },
-  { icon: CreditCard, title: "Tap & go", text: "Contactless cards, Apple Pay, Google Pay or QR code. Done in seconds." },
-  { icon: Sparkles, title: `${TOTAL_FLAVOURS}+ flavours`, text: "From double chocolate to cola lime — there's a favourite for every session." },
-  { icon: BadgeEuro, title: SITE.priceRange, text: "Gym-bar quality at a price that makes sense after every workout." },
-  { icon: Languages, title: "Easy interface", text: "A clean, multilingual touchscreen that anyone can use first time." },
+  {
+    icon: Blend,
+    title: "Smooth-mix tech",
+    text: "A high-speed vortex mixer blends every shake completely — zero clumps, every time.",
+  },
+  {
+    icon: Clock3,
+    title: "Open when you are",
+    text: "Available for as long as your gym or mall is open, early mornings included.",
+  },
+  {
+    icon: CreditCard,
+    title: "Tap & go",
+    text: "Contactless cards, Apple Pay, Google Pay or QR code. Done in seconds.",
+  },
+  {
+    icon: Sparkles,
+    title: `${TOTAL_FLAVOURS}+ flavours`,
+    text: "From double chocolate to cola lime — there's a favourite for every session.",
+  },
+  {
+    icon: BadgeEuro,
+    title: SITE.priceRange,
+    text: "Gym-bar quality at a price that makes sense after every workout.",
+  },
+  {
+    icon: Languages,
+    title: "Easy interface",
+    text: "A clean, multilingual touchscreen that anyone can use first time.",
+  },
 ];
 
 function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee items={["Fresh mixed", "Tap to pay", "No shaker needed", "Certified brands", "Ready in 40 seconds"]} />
+      <Marquee
+        items={[
+          "Fresh mixed",
+          "Tap to pay",
+          "No shaker needed",
+          "Certified brands",
+          "Ready in 40 seconds",
+        ]}
+      />
       <Features />
       <Statement />
       <DrinksPreview />
@@ -88,7 +125,10 @@ function Hero() {
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-fade-bottom" />
 
-      <motion.div style={{ opacity: fade }} className="container relative mx-auto flex min-h-[100svh] flex-col justify-between px-5 pb-10 pt-32 md:px-8">
+      <motion.div
+        style={{ opacity: fade }}
+        className="container relative mx-auto flex min-h-[100svh] flex-col justify-between px-5 pb-10 pt-32 md:px-8"
+      >
         <div className="max-w-xl">
           <motion.p
             className="eyebrow mb-6 flex items-center gap-3"
@@ -108,8 +148,8 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
-            Protein, collagen, BCAA and isotonic drinks — freshly mixed in seconds at your gym or mall. Leave the
-            shaker at home.
+            Protein, collagen, BCAA and isotonic drinks — freshly mixed in seconds at your gym or
+            mall. Leave the shaker at home.
           </motion.p>
           <motion.div
             className="pointer-events-auto mt-9 flex flex-wrap gap-3"
@@ -154,11 +194,20 @@ function Features() {
       />
       <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map((f, i) => (
-          <Reveal key={f.title} delay={i * 0.06} className="group relative bg-background p-8 transition-colors duration-500 hover:bg-surface md:p-10">
-            <f.icon className="size-9 text-primary transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-8deg]" strokeWidth={1.6} />
+          <Reveal
+            key={f.title}
+            delay={i * 0.06}
+            className="group relative bg-background p-8 transition-colors duration-500 hover:bg-surface md:p-10"
+          >
+            <f.icon
+              className="size-9 text-primary transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-8deg]"
+              strokeWidth={1.6}
+            />
             <h3 className="mt-8 text-xl font-bold uppercase">{f.title}</h3>
             <p className="mt-3 text-muted-foreground">{f.text}</p>
-            <span className="absolute right-8 top-8 font-display text-sm text-muted-foreground/50">0{i + 1}</span>
+            <span className="absolute right-8 top-8 font-display text-sm text-muted-foreground/50">
+              0{i + 1}
+            </span>
           </Reveal>
         ))}
       </div>
@@ -173,8 +222,15 @@ function Statement() {
   const textX = useTransform(scrollYProgress, [0, 1], ["10%", "-30%"]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden border-y border-border bg-surface py-24 md:py-32">
-      <motion.p style={{ x: textX }} aria-hidden className="pointer-events-none whitespace-nowrap text-wordmark text-outline text-[14vw]">
+    <section
+      ref={ref}
+      className="relative overflow-hidden border-y border-border bg-surface py-24 md:py-32"
+    >
+      <motion.p
+        style={{ x: textX }}
+        aria-hidden
+        className="pointer-events-none whitespace-nowrap text-wordmark text-outline text-[14vw]"
+      >
         Train · Refuel · Repeat · Train · Refuel
       </motion.p>
       <div className="container mx-auto mt-10 grid items-center gap-12 px-5 md:grid-cols-2 md:px-8">
@@ -190,21 +246,25 @@ function Statement() {
           />
         </div>
         <div>
-          <SectionHeading
-            index="02"
-            label="The idea"
-            title="No more powder in your gym bag"
-          />
+          <SectionHeading index="02" label="The idea" title="No more powder in your gym bag" />
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg text-muted-foreground">
-              Measuring scoops, rinsing shakers, forgetting your tub at home — we fixed all of it. Walk up to the
-              kiosk, pick a drink, tap your card and take a perfectly mixed shake straight to the locker room.
+              Measuring scoops, rinsing shakers, forgetting your tub at home — we fixed all of it.
+              Walk up to the kiosk, pick a drink, tap your card and take a perfectly mixed shake
+              straight to the locker room.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <ul className="mt-8 space-y-4">
-              {["Mixed with filtered, chilled water", "Sealed cup and lid included", "Brands you already trust"].map((t) => (
-                <li key={t} className="flex items-center gap-4 border-b border-border pb-4 font-semibold">
+              {[
+                "Mixed with filtered, chilled water",
+                "Sealed cup and lid included",
+                "Brands you already trust",
+              ].map((t) => (
+                <li
+                  key={t}
+                  className="flex items-center gap-4 border-b border-border pb-4 font-semibold"
+                >
                   <span className="grid size-7 place-items-center rounded-full bg-primary text-primary-foreground">
                     <ArrowRight className="size-4" />
                   </span>
@@ -242,7 +302,11 @@ function DrinksPreview() {
             >
               <div className="flex -space-x-2">
                 {d.flavours.slice(0, 4).map((f) => (
-                  <span key={f.name} className="size-8 rounded-full border-2 border-card" style={{ backgroundColor: f.color }} />
+                  <span
+                    key={f.name}
+                    className="size-8 rounded-full border-2 border-card"
+                    style={{ backgroundColor: f.color }}
+                  />
                 ))}
               </div>
               <div>
@@ -301,9 +365,12 @@ function MachineTeaser() {
         <div className="absolute inset-x-0 bottom-0 flex flex-col justify-between gap-6 p-8 md:flex-row md:items-end md:p-12">
           <div className="max-w-xl">
             <p className="eyebrow mb-4">04 — Our machines</p>
-            <h2 className="text-3xl font-bold uppercase leading-tight md:text-5xl">Built for busy gym floors</h2>
+            <h2 className="text-3xl font-bold uppercase leading-tight md:text-5xl">
+              Built for busy gym floors
+            </h2>
             <p className="mt-4 text-muted-foreground">
-              Three kiosk models — including the new 32-inch JK91 — one obsession: a perfect shake in under a minute. Spin them around in 3D.
+              Three kiosk models — including the new 32-inch JK91 — one obsession: a perfect shake
+              in under a minute. Explore the real Vendofit machines.
             </p>
           </div>
           <Button asChild variant="volt" size="xl">
@@ -335,7 +402,9 @@ function FaqPreview() {
               <AccordionTrigger className="py-6 text-left font-display text-lg font-bold hover:no-underline md:text-xl">
                 {item.q}
               </AccordionTrigger>
-              <AccordionContent className="text-base text-muted-foreground">{item.a}</AccordionContent>
+              <AccordionContent className="text-base text-muted-foreground">
+                {item.a}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
@@ -350,12 +419,15 @@ export function PartnerCta() {
       <Reveal className="relative overflow-hidden rounded-[2rem] bg-volt-gradient p-10 text-primary-foreground md:p-16">
         <div className="relative z-10 flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <p className="text-sm font-bold uppercase tracking-[0.22em] opacity-70">For gyms & venues</p>
+            <p className="text-sm font-bold uppercase tracking-[0.22em] opacity-70">
+              For gyms & venues
+            </p>
             <h2 className="mt-4 text-4xl font-extrabold uppercase leading-[0.95] md:text-6xl">
               Put a RepUpFit in your club
             </h2>
             <p className="mt-5 max-w-lg text-lg font-medium opacity-80">
-              We install, stock and maintain the machine. You earn a share of every drink — zero hassle.
+              We install, stock and maintain the machine. You earn a share of every drink — zero
+              hassle.
             </p>
           </div>
           <Link

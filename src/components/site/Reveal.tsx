@@ -34,7 +34,11 @@ export function RevealWords({ text, className }: { text: string; className?: str
       transition={{ staggerChildren: 0.06 }}
     >
       {words.map((word, i) => (
-        <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-[0.08em] align-bottom" aria-hidden>
+        <span
+          key={`${word}-${i}`}
+          className="inline-block overflow-hidden pb-[0.08em] align-bottom"
+          aria-hidden
+        >
           <motion.span
             className="inline-block"
             variants={{ hidden: { y: "110%" }, show: { y: "0%" } }}

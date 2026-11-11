@@ -39,6 +39,8 @@ describe("partner enquiry form rules", () => {
 
   it("puts the venue in the email subject", () => {
     const r = partnerSchema.parse(valid);
-    expect(partnerMailto("hello@repupfit.com", r)).toContain(encodeURIComponent("Partner enquiry — Ironworks"));
+    expect(partnerMailto("hello@repupfit.com", r)).toContain(
+      encodeURIComponent("Partner enquiry — Ironworks"),
+    );
   });
 });

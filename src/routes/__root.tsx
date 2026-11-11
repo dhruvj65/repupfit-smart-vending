@@ -86,11 +86,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "RepUpFit — Fresh sports shakes on demand" },
-      { name: "description", content: "Protein, collagen, BCAA and isotonic drinks mixed fresh by smart vending kiosks in gyms and malls." },
+      {
+        name: "description",
+        content:
+          "Protein, collagen, BCAA and isotonic drinks mixed fresh by smart vending kiosks in gyms and malls.",
+      },
       { name: "author", content: "RepUpFit" },
       { name: "theme-color", content: "#1b1b18" },
       { property: "og:title", content: "RepUpFit — Fresh sports shakes on demand" },
-      { property: "og:description", content: "Protein, collagen, BCAA and isotonic drinks mixed fresh by smart vending kiosks." },
+      {
+        property: "og:description",
+        content: "Protein, collagen, BCAA and isotonic drinks mixed fresh by smart vending kiosks.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

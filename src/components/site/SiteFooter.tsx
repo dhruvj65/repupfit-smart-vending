@@ -36,24 +36,41 @@ export function SiteFooter() {
           <p className="eyebrow mb-4">Support</p>
           <ul className="space-y-3">
             <li>
-              <a href={SITE.phoneHref} className="font-semibold transition-colors hover:text-primary">
+              <a
+                href={SITE.phoneHref}
+                className="font-semibold transition-colors hover:text-primary"
+              >
                 {SITE.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${SITE.email}`} className="font-semibold transition-colors hover:text-primary">
+              <a
+                href={`mailto:${SITE.email}`}
+                className="font-semibold transition-colors hover:text-primary"
+              >
                 {SITE.email}
               </a>
             </li>
             <li>
-              <a href={SITE.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-semibold transition-colors hover:text-primary">
+              <a
+                href={SITE.whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 font-semibold transition-colors hover:text-primary"
+              >
                 WhatsApp <ArrowUpRight className="size-4" />
               </a>
             </li>
           </ul>
           <div className="mt-6 flex gap-4">
             {SITE.socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
                 {s.label}
               </a>
             ))}
@@ -61,7 +78,10 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div aria-hidden className="pointer-events-none select-none px-5 text-wordmark text-outline text-[18vw] leading-none opacity-60 md:px-8">
+      <div
+        aria-hidden
+        className="pointer-events-none select-none px-5 text-wordmark text-outline text-[18vw] leading-none opacity-60 md:px-8"
+      >
         RepUpFit
       </div>
 

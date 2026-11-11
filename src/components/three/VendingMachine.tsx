@@ -69,7 +69,14 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
   return (
     <group {...groupProps}>
       {/* body */}
-      <RoundedBox args={[w, h, d]} radius={0.07} smoothness={4} position={[0, h / 2 + 0.08, 0]} castShadow receiveShadow>
+      <RoundedBox
+        args={[w, h, d]}
+        radius={0.07}
+        smoothness={4}
+        position={[0, h / 2 + 0.08, 0]}
+        castShadow
+        receiveShadow
+      >
         <meshStandardMaterial map={textures.body} color={body} metalness={0.55} roughness={0.42} />
       </RoundedBox>
 
@@ -80,7 +87,11 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
       </mesh>
 
       {/* screen bezel + screen */}
-      <RoundedBox args={[screen[0] + 0.1, screen[1] + 0.1, 0.05]} radius={0.03} position={[0, screenY, front + 0.01]}>
+      <RoundedBox
+        args={[screen[0] + 0.1, screen[1] + 0.1, 0.05]}
+        radius={0.03}
+        position={[0, screenY, front + 0.01]}
+      >
         <meshStandardMaterial color="#0b0b0a" roughness={0.2} metalness={0.3} />
       </RoundedBox>
       <mesh position={[0, screenY, front + 0.04]}>
@@ -95,7 +106,13 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
         </RoundedBox>
         <mesh position={[0, 0, 0.032]}>
           <circleGeometry args={[0.04, 24]} />
-          <meshStandardMaterial ref={glowRef} color={VOLT} emissive={VOLT} emissiveIntensity={1.6} toneMapped={false} />
+          <meshStandardMaterial
+            ref={glowRef}
+            color={VOLT}
+            emissive={VOLT}
+            emissiveIntensity={1.6}
+            toneMapped={false}
+          />
         </mesh>
       </group>
 
@@ -105,9 +122,19 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
       </RoundedBox>
       <mesh position={[0, bayY + 0.43, front + 0.035]}>
         <boxGeometry args={[w * 0.5, 0.025, 0.02]} />
-        <meshStandardMaterial color={VOLT} emissive={VOLT} emissiveIntensity={2.2} toneMapped={false} />
+        <meshStandardMaterial
+          color={VOLT}
+          emissive={VOLT}
+          emissiveIntensity={2.2}
+          toneMapped={false}
+        />
       </mesh>
-      <pointLight position={[0, bayY + 0.25, front + 0.25]} intensity={1.6} distance={1.4} color="#fff6c8" />
+      <pointLight
+        position={[0, bayY + 0.25, front + 0.25]}
+        intensity={1.6}
+        distance={1.4}
+        color="#fff6c8"
+      />
       <mesh position={[0, bayY - 0.44, front + 0.12]}>
         <boxGeometry args={[w * 0.62, 0.04, 0.26]} />
         <meshStandardMaterial color="#1a1a18" metalness={0.8} roughness={0.25} />
@@ -120,7 +147,12 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
       {[-1, 1].map((s) => (
         <mesh key={s} position={[s * (w / 2 - 0.035), h / 2 + 0.08, front + 0.005]}>
           <boxGeometry args={[0.025, h * 0.9, 0.012]} />
-          <meshStandardMaterial color={VOLT} emissive={VOLT} emissiveIntensity={1.8} toneMapped={false} />
+          <meshStandardMaterial
+            color={VOLT}
+            emissive={VOLT}
+            emissiveIntensity={1.8}
+            toneMapped={false}
+          />
         </mesh>
       ))}
 
@@ -131,12 +163,14 @@ export function VendingMachine({ variant = "pro", cupColor = "#6b3e26", ...group
       </mesh>
 
       {/* feet */}
-      {([
-        [-1, -1],
-        [1, -1],
-        [-1, 1],
-        [1, 1],
-      ] as const).map(([x, z]) => (
+      {(
+        [
+          [-1, -1],
+          [1, -1],
+          [-1, 1],
+          [1, 1],
+        ] as const
+      ).map(([x, z]) => (
         <mesh key={`${x}${z}`} position={[x * (w / 2 - 0.12), 0.04, z * (d / 2 - 0.12)]}>
           <cylinderGeometry args={[0.06, 0.07, 0.08, 16]} />
           <meshStandardMaterial color="#0a0a0a" />

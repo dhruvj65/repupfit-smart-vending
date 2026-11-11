@@ -20,7 +20,13 @@ function SceneFallback() {
   );
 }
 
-function SceneShell({ className, children }: { className?: string | undefined; children: ReactNode }) {
+function SceneShell({
+  className,
+  children,
+}: {
+  className?: string | undefined;
+  children: ReactNode;
+}) {
   return (
     <div className={cn("relative h-full w-full", className)}>
       <ClientOnly fallback={<SceneFallback />}>
@@ -44,7 +50,9 @@ export function HeroScene({ className }: { className?: string | undefined }) {
 export function FlavourScene({
   className,
   ...props
-}: Omit<ComponentProps<typeof FlavourSceneImpl>, "reducedMotion"> & { className?: string | undefined }) {
+}: Omit<ComponentProps<typeof FlavourSceneImpl>, "reducedMotion"> & {
+  className?: string | undefined;
+}) {
   const reduced = useReducedMotion() ?? false;
   return (
     <SceneShell className={className}>
@@ -56,7 +64,9 @@ export function FlavourScene({
 export function MachineScene({
   className,
   ...props
-}: Omit<ComponentProps<typeof MachineSceneImpl>, "reducedMotion"> & { className?: string | undefined }) {
+}: Omit<ComponentProps<typeof MachineSceneImpl>, "reducedMotion"> & {
+  className?: string | undefined;
+}) {
   const reduced = useReducedMotion() ?? false;
   return (
     <SceneShell className={className}>
