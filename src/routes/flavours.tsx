@@ -15,7 +15,7 @@ type FlavoursSearch = { drink?: string };
 
 export const Route = createFileRoute("/flavours")({
   validateSearch: (search: Record<string, unknown>): FlavoursSearch => {
-    const drink = parseDrinkParam(search.drink);
+    const drink = parseDrinkParam(search["drink"]);
     return drink ? { drink } : {};
   },
   head: () => ({

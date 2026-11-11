@@ -13,7 +13,7 @@ type MachinesSearch = { model?: MachineVariant };
 
 export const Route = createFileRoute("/machines")({
   validateSearch: (search: Record<string, unknown>): MachinesSearch =>
-    isMachineVariant(search.model) ? { model: search.model } : {},
+    isMachineVariant(search["model"]) ? { model: search["model"] } : {},
   head: () => ({
     meta: [
       { title: "Machines — RepUpFit JK91, Pro 8 & Compact 7 smart kiosks" },

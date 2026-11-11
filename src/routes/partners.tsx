@@ -140,7 +140,7 @@ function PartnerForm() {
     formState: { errors, isSubmitting },
   } = useForm<PartnerInput, unknown, PartnerValues>({
     resolver: zodResolver(partnerSchema),
-    defaultValues: { name: "", email: "", phone: "", venue: "", venueType: undefined, visitors: undefined, message: "" },
+    defaultValues: { name: "", email: "", phone: "", venue: "", message: "" },
   });
 
   const onSubmit = (values: PartnerValues) => {
