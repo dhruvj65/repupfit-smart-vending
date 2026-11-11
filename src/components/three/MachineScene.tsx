@@ -18,7 +18,7 @@ export default function MachineScene({
   return (
     <Canvas
       shadows
-      dpr={[1, 1.75]}
+      dpr={[1, 1.25]}
       camera={{ position: [3.2, 2.6, 7.4], fov: 36 }}
       gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
       aria-label="Interactive 3D machine. Drag to rotate."

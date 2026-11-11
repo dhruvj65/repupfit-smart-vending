@@ -1,7 +1,8 @@
 import { ClientOnly } from "@tanstack/react-router";
 import { useReducedMotion } from "motion/react";
-import { lazy, Suspense, type ComponentProps, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ComponentProps, type ReactNode } from "react";
 
+import shakerTouch from "@/assets/vendofit-shaker-touch.jpg";
 import { cn } from "@/lib/utils";
 
 /*
@@ -40,9 +41,35 @@ function SceneShell({
 
 export function HeroScene({ className }: { className?: string | undefined }) {
   const reduced = useReducedMotion() ?? false;
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const loadScene = () => setReady(true);
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(loadScene, { timeout: 1800 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+    const timer = window.setTimeout(loadScene, 1200);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <SceneShell className={className}>
-      <HeroSceneImpl reducedMotion={reduced} />
+      {ready ? (
+        <HeroSceneImpl reducedMotion={reduced} />
+      ) : (
+        <div className="relative flex h-full w-full items-center justify-center">
+          <img
+            src={shakerTouch}
+            alt=""
+            fetchPriority="high"
+            className="w-[min(74vw,560px)] rounded-[1.5rem] border border-white/10 object-cover shadow-2xl"
+          />
+          <span className="absolute left-[18%] top-[25%] size-2 animate-pulse-glow rounded-full bg-primary" />
+          <span className="absolute right-[20%] top-[32%] size-1.5 animate-pulse-glow rounded-full bg-primary" />
+          <span className="absolute bottom-[28%] left-[28%] size-1 animate-pulse-glow rounded-full bg-primary" />
+        </div>
+      )}
     </SceneShell>
   );
 }

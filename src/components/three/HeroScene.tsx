@@ -77,7 +77,7 @@ export default function HeroScene({ reducedMotion = false }: { reducedMotion?: b
   return (
     <Canvas
       shadows
-      dpr={[1, 1.75]}
+      dpr={[1, 1.25]}
       camera={{ position: [0, 0.4, 8.5], fov: 38 }}
       gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
       aria-hidden
@@ -87,7 +87,7 @@ export default function HeroScene({ reducedMotion = false }: { reducedMotion?: b
         <Rig reducedMotion={reducedMotion} />
         {!reducedMotion && (
           <Sparkles
-            count={60}
+            count={36}
             scale={[12, 6, 4]}
             size={2.2}
             speed={0.35}
