@@ -302,7 +302,7 @@ function MachineTeaser() {
             <p className="eyebrow mb-4">04 — Our machines</p>
             <h2 className="text-3xl font-bold uppercase leading-tight md:text-5xl">Built for busy gym floors</h2>
             <p className="mt-4 text-muted-foreground">
-              Three kiosk models — including the new 32\" JK91 — one obsession: a perfect shake in under a minute. Spin them around in 3D.
+              Three kiosk models — including the new 32-inch JK91 — one obsession: a perfect shake in under a minute. Spin them around in 3D.
             </p>
           </div>
           <Button asChild variant="volt" size="xl">

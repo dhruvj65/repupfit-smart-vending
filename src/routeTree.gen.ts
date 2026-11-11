@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FlavoursRouteImport } from './routes/flavours'
 import { Route as MachinesRouteImport } from './routes/machines'
 import { Route as PartnersRouteImport } from './routes/partners'
@@ -17,6 +18,11 @@ import { Route as PartnersRouteImport } from './routes/partners'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FlavoursRoute = FlavoursRouteImport.update({
@@ -37,12 +43,14 @@ const PartnersRoute = PartnersRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/flavours': typeof FlavoursRoute
   '/machines': typeof MachinesRoute
   '/partners': typeof PartnersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/flavours': typeof FlavoursRoute
   '/machines': typeof MachinesRoute
   '/partners': typeof PartnersRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/flavours': typeof FlavoursRoute
   '/machines': typeof MachinesRoute
   '/partners': typeof PartnersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/flavours' | '/machines' | '/partners'
+  fullPaths: '/' | '/faq' | '/flavours' | '/machines' | '/partners'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/flavours' | '/machines' | '/partners'
-  id: '__root__' | '/' | '/flavours' | '/machines' | '/partners'
+  to: '/' | '/faq' | '/flavours' | '/machines' | '/partners'
+  id: '__root__' | '/' | '/faq' | '/flavours' | '/machines' | '/partners'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FaqRoute: typeof FaqRoute
   FlavoursRoute: typeof FlavoursRoute
   MachinesRoute: typeof MachinesRoute
   PartnersRoute: typeof PartnersRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/flavours': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FaqRoute: FaqRoute,
   FlavoursRoute: FlavoursRoute,
   MachinesRoute: MachinesRoute,
   PartnersRoute: PartnersRoute,
