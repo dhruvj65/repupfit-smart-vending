@@ -113,3 +113,8 @@ export const DRINKS: DrinkCategory[] = [
 ];
 
 export const TOTAL_FLAVOURS = DRINKS.reduce((sum, d) => sum + d.flavours.length, 0);
+
+/** Narrows an untrusted ?drink= search value to a known drink id. */
+export function parseDrinkParam(value: unknown): string | undefined {
+  return typeof value === "string" && DRINKS.some((d) => d.id === value) ? value : undefined;
+}
